@@ -13,6 +13,17 @@ router.get('/', (req, res) => {
     })
 })
 
+router.get('/data', (req, res) => {
+    conexion.query('SELECT * FROM ussers', (error, results) => {
+        if (error) { throw error }
+        else {
+            const data = JSON.stringify(results);
+            res.send(data);
+            // res.send(results);
+        }
+    })
+})
+
 router.get('/create', (req, res) => {
     res.render('create');
 })
